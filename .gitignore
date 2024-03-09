@@ -1,0 +1,5 @@
+vendor/*
+compose.lock
+pentair.lock
+pentair.cache
+index.php
