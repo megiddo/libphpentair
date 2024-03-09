@@ -2,13 +2,17 @@
 
 namespace Phpentair;
 
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\NullLogger;
+
 class CommandParser {
 
+    use LoggerAwareTrait;
     var $ipc;
-    var $messageFactory;
 
     public function __construct(Com\IConnector $ipc) {
         $this->ipc = $ipc;
+        $this->logger = new NullLogger();
     }
 
     public function parse(MessageType $type = null) {
@@ -29,7 +33,7 @@ class CommandParser {
         try {
             $cmd = \Phpentair\CommandTypeFactory::CallStatic($pm->command, 'parse', $raw);
         } catch (\TypeError $te) {
-            echo "Caught TE\n";
+            $this->logger->critical("Type not understood during parsing: " . $te->getMessage());
             $cmd = new Command();
             $cmd->raw($raw);
             throw $te;

@@ -2,8 +2,12 @@
 
 namespace Phpentair;
 
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\NullLogger;
+
 class Pentair {
-    
+
+    use LoggerAwareTrait;
     private $com;
     private $flock;
     private $readCache;
@@ -12,6 +16,7 @@ class Pentair {
         $this->com = $com;
         $this->flock = $flock;
         $this->readCache = $readCache;
+        $this->logger = new NullLogger();
     }
 
     function read() {
