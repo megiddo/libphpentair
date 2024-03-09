@@ -1,5 +1,5 @@
 vendor/*
-compose.lock
+composer.lock
 pentair.lock
 pentair.cache
 index.php
