@@ -21,7 +21,7 @@ class Command {
 
     public static function fromJson($json) {
         $pm = json_decode($json, false);
-        if (strlen($pm->command) == 0 && substr($pm->raw, 0, 6) == '100250') {
+        if (strlen($pm->command ?? "") == 0 && substr($pm->raw, 0, 6) == '100250') {
             return Command\ShortInfo::parse(hex2bin($pm->raw));
         }
         return \Phpentair\CommandTypeFactory::CallStatic($pm->command, 'parse', hex2bin($pm->raw));
@@ -93,7 +93,7 @@ class Command {
         return $checksum % 65536;
     }
 
-    public function toJson($pretty = null) {
+    public function toJson($pretty = 0x0) {
         $this->raw(bin2hex($this->raw));
         $json = json_encode($this, $pretty);
         return $json;
