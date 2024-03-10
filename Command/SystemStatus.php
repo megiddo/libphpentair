@@ -2,9 +2,9 @@
 
 namespace Phpentair\Command;
 
-use Phpentair\CIRCUIT_STATUS;
-use Phpentair\Commands;
-use Phpentair\StatusCommandBytes;
+use Phpentair\Enum\CircuitStatus;
+use Phpentair\Enum\Commands;
+use Phpentair\Enum\StatusCommandBytes;
 
 // https://github.com/scottrfrancis/Pentair-Thing/blob/49e6014866029771a31eaba075b89401fac2593a/PentairProtocol.py#L63
 class SystemStatus extends \Phpentair\Command {
@@ -42,11 +42,11 @@ class SystemStatus extends \Phpentair\Command {
 
     private function setCircuitStatus() {
         $this->circuitStatus = new \stdClass();
-        $this->circuitStatus->filterPump = $this->circuits & CIRCUIT_STATUS::FILTER_PUMP->value ? "on" : "off";
-        $this->circuitStatus->cleanerPump = $this->circuits & CIRCUIT_STATUS::CLEANER_PUMP->value ? "on" : "off";
-        $this->circuitStatus->waterFeature = $this->circuits & CIRCUIT_STATUS::WATER_FEATURE->value ? "on" : "off";
-        $this->circuitStatus->spaLight = $this->circuits & CIRCUIT_STATUS::SPA_LIGHT->value ? "on" : "off";
-        $this->circuitStatus->poolLight = $this->circuits & CIRCUIT_STATUS::POOL_LIGHT->value ? "on" : "off";
+        $this->circuitStatus->filterPump = $this->circuits & CircuitStatus::FILTER_PUMP->value ? "on" : "off";
+        $this->circuitStatus->cleanerPump = $this->circuits & CircuitStatus::CLEANER_PUMP->value ? "on" : "off";
+        $this->circuitStatus->waterFeature = $this->circuits & CircuitStatus::WATER_FEATURE->value ? "on" : "off";
+        $this->circuitStatus->spaLight = $this->circuits & CircuitStatus::SPA_LIGHT->value ? "on" : "off";
+        $this->circuitStatus->poolLight = $this->circuits & CircuitStatus::POOL_LIGHT->value ? "on" : "off";
     }
 
     public static function parse($raw) {

@@ -2,8 +2,8 @@
 
 namespace Phpentair\Command;
 
-use Phpentair\TempStatusBytes;
-use Phpentair\Commands;
+use Phpentair\Enum\TempStatusBytes;
+use Phpentair\Enum\Commands;
 class TempStatus extends \Phpentair\Command {
 
     var $water;

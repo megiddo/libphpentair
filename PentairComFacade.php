@@ -1,10 +1,9 @@
 <?php
 
-namespace Phpentair\Com;
+namespace Phpentair;
 
-use Phpentair\CommandTypeFactory;
-use \Phpentair\MessageType;
-use Phpentair\Command;
+use Phpentair\Com\IConnector;
+use Phpentair\Enum\MessageType;
 
 class PentairComFacade {
 

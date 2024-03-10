@@ -12,7 +12,7 @@ class Pentair {
     private $flock;
     private $readCache;
 
-    public function __construct(Com\PentairComFacade $com, $flock, $readCache) {
+    public function __construct(\Phpentair\PentairComFacade $com, $flock, $readCache) {
         $this->com = $com;
         $this->flock = $flock;
         $this->readCache = $readCache;

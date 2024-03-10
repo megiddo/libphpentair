@@ -4,7 +4,7 @@ namespace Phpentair\Command;
 
 use Phpentair\CIRCUIT_CHANGE;
 use Phpentair\CircuitChangeBytes;
-use Phpentair\Commands;
+use Phpentair\Enum\Commands;
 use function Phpentair\dechexbyte;
 
 // https://github.com/scottrfrancis/Pentair-Thing/blob/49e6014866029771a31eaba075b89401fac2593a/PentairProtocol.py#L288

@@ -2,8 +2,8 @@
 
 namespace Phpentair\Command;
 
-use Phpentair\Commands;
-use Phpentair\MessageType;
+use Phpentair\Enum\Commands;
+use Phpentair\Enum\MessageType;
 
 class ShortInfo extends \Phpentair\Command {
 

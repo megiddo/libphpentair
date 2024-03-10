@@ -2,6 +2,10 @@
 
 namespace Phpentair;
 
+use Phpentair\Enum\MessageType;
+use Phpentair\Enum\HeaderBytes;
+use Phpentair\Enum\Commands;
+
 class Command {
 
     var $raw;
@@ -58,6 +62,10 @@ class Command {
 
     public static function MessageType() {
         return MessageType::STANDARD->value;
+    }
+
+    public static function dechexbyte($int) {
+        return str_pad(dechex($int), 2, '0', STR_PAD_LEFT);
     }
 
     protected function buildHex($raw) {

@@ -4,6 +4,8 @@ namespace Phpentair;
 
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use Phpentair\Enum\MessageType;
+use Phpentair\Enum\HeaderBytes;
 
 class CommandParser {
 

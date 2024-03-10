@@ -1,6 +1,6 @@
 {
-  "name": "phpentair/pentair",
-  "version": "0.9.0",
+  "name": "phpentair/libpentair",
+  "version": "0.9.1",
   "require": {
     "psr/log": "^3.0"
   },
