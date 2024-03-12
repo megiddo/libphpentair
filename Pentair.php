@@ -9,13 +9,9 @@ class Pentair {
 
     use LoggerAwareTrait;
     private $com;
-    private $flock;
-    private $readCache;
 
-    public function __construct(\Phpentair\PentairComFacade $com, $flock, $readCache) {
+    public function __construct(\Phpentair\PentairComFacade $com) {
         $this->com = $com;
-        $this->flock = $flock;
-        $this->readCache = $readCache;
         $this->logger = new NullLogger();
     }
 
@@ -23,23 +19,11 @@ class Pentair {
         $pm = $this->com->readCommand();
         if ($pm === false) return new Exception\CommandNotSupported();
 
-        $fp = fopen($this->flock, 'c+');
-
-        if (flock($fp, LOCK_EX | LOCK_NB)) {
-            file_put_contents($this->readCache, $pm->toJson());
-            flock($fp, LOCK_UN);
-        }
-        flock($fp, LOCK_SH);
-        $json = file_get_contents($this->readCache);
-        flock($fp, LOCK_UN);
-
-        fclose($fp);
-
-        return Command::fromJson($json);
+        return $pm;
     }
 
-    function write($message) {
-        return $this->com->sendCommand($message);
+    function write(Command $command) {
+        $this->com->sendCommand($command);
     }
 
 }

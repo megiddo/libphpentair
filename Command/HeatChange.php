@@ -36,7 +36,6 @@ class HeatChange extends \Phpentair\Command
     public function toHex()
     {
         $header = $this->buildHeaderHex();
-        echo "HEADER: $header\n";
         return $this->buildHex(hex2bin($header .
             dechexbyte($this->poolSet) .
             dechexbyte($this->spaSet) .

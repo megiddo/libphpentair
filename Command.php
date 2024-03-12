@@ -74,11 +74,11 @@ class Command {
     }
 
     protected function buildHeaderHex() {
-        return dechexbyte($this->protocol) .
-            dechexbyte($this->destination) .
-            dechexbyte($this->source) .
-            dechexbyte($this->command) .
-            dechexbyte($this->length);
+        return Command::dechexbyte($this->protocol) .
+            Command::dechexbyte($this->destination) .
+            Command::dechexbyte($this->source) .
+            Command::dechexbyte($this->command) .
+            Command::dechexbyte($this->length);
     }
 
     public function checksum() {

@@ -2,10 +2,8 @@
 
 namespace Phpentair\Command;
 
-use Phpentair\CIRCUIT_CHANGE;
-use Phpentair\CircuitChangeBytes;
+use Phpentair\Enum\CircuitChangeBytes;
 use Phpentair\Enum\Commands;
-use function Phpentair\dechexbyte;
 
 // https://github.com/scottrfrancis/Pentair-Thing/blob/49e6014866029771a31eaba075b89401fac2593a/PentairProtocol.py#L258
 class CircuitChange extends \Phpentair\Command
@@ -34,29 +32,35 @@ class CircuitChange extends \Phpentair\Command
     public function toHex()
     {
         $header = $this->buildHeaderHex();
-        echo "HEADER: $header\n";
         return $this->buildHex(hex2bin($header .
-            dechexbyte($this->circuit->value) .
-            dechexbyte($this->status)
+            \Phpentair\Command::dechexbyte($this->circuit->value) .
+            \Phpentair\Command::dechexbyte($this->status)
         ));
     }
 
     public static function spa($protocol, $status) {
-        echo "Target protocol $protocol\n";
-        return CircuitChange::change($protocol, CIRCUIT_CHANGE::SPA, $status);
+        return CircuitChange::change($protocol, \Phpentair\Enum\CircuitChange::SPA, $status);
     }
 
     public static function pool($protocol, $status) {
-        return CircuitChange::change($protocol, CIRCUIT_CHANGE::POOL, $status);
+        return CircuitChange::change($protocol, \Phpentair\Enum\CircuitChange::POOL, $status);
     }
 
-    private static function change($protocol, $circuit, $status) {
+    public static function poolLight($protocol, $status) {
+        return CircuitChange::change($protocol, \Phpentair\Enum\CircuitChange::POOL_LIGHT, $status);
+    }
+
+    public static function spaLight($protocol, $status) {
+        return CircuitChange::change($protocol, \Phpentair\Enum\CircuitChange::SPA_LIGHT, $status);
+    }
+
+    public static function change($protocol, $circuit, $status) {
         $cmd = new CircuitChange();
         $cmd->command(Commands::CIRCUIT_CHANGE_REQUEST->value);
         $cmd->protocol($protocol);
         $cmd->length(2);
-        $cmd->source(32);
-        $cmd->destination(16);
+        $cmd->source(0x48);
+        $cmd->destination(0x10);
         $cmd->circuit($circuit);
         $cmd->status($status ? 1 : 0);
         return $cmd;

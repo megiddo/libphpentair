@@ -34,7 +34,9 @@ class PentairComFacade {
     }
 
     public function sendCommand(Command $command) {
+        $this->ipc->open();
         $this->ipc->put($command);
+        $this->ipc->close();
     }
 
     private function headersMatch($lead) {

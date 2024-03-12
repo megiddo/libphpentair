@@ -32,7 +32,7 @@ class EW11Connector implements IConnector {
     }
 
     public function put(Command $command) {
-        return fputs(command->getBytes());
+        return fputs($this->socket, hex2bin($command->toHex()));
     }
 
 }
