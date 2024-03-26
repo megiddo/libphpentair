@@ -1,13 +1,13 @@
 {
   "name": "phpentair/libpentair",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "require": {
     "psr/log": "^3.0"
   },
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "Phpentair\\": ["", "libpentair/", "libpentair/src", "src"]
+      "Phpentair\\": "src"
     }
   }
 }
