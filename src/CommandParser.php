@@ -2,10 +2,10 @@
 
 namespace Phpentair;
 
+use Phpentair\Enum\HeaderBytes;
+use Phpentair\Enum\MessageType;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
-use Phpentair\Enum\MessageType;
-use Phpentair\Enum\HeaderBytes;
 
 class CommandParser {
 

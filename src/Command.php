@@ -2,9 +2,9 @@
 
 namespace Phpentair;
 
-use Phpentair\Enum\MessageType;
-use Phpentair\Enum\HeaderBytes;
 use Phpentair\Enum\Commands;
+use Phpentair\Enum\HeaderBytes;
+use Phpentair\Enum\MessageType;
 
 class Command {
 
